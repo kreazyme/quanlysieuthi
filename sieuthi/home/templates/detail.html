@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>
+    Chi tiết mặt hàng
+</h1>
+
+
+{% block conten %}
+
+    <p>
+        Sản phẩm {{product.name}} có giá {{product.price}} VND thuộc loại hàng {{product.producttype}} với mã sản phẩm là {{product.code}}
+    </p>
+{% endblock conten %}
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form>
+    <div class="row">
+        <div class="col-auto">
+            <input type="text" class="form-control" placeholder="Keyword" name="keyword"
+                value="{{ keyword|default:''}}">
+        </div>
+        <div class="col-auto">
+            <input type="submit" class="btn btn-primary" value="Search" />
+        </div>
+        </div>
+</form>
+
+<table class="table">
+    <thead>
+        <th>Mã mặt hàng</th>
+        <th>Tên</th>
+        <th>Giá VND</th>
+        <th>Loại mặt hàng</th>
+        
+        <th>Số lượng</th>
+        <th>
+            <a href="create" class="btn btn-primary">Add</a>
+        </th>
+        <th>
+            <a href="createtype" class="btn btn-primary">Create type</a>
+        </th>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.code }}</td>
+            <td>
+                <a href="{{product.get_absolute_url}}">{{product.name}}</a>
+            </td>
+            <td>{{ product.price }}</td>
+            
+            <td>{{ product.producttype | default:'-' }}</td>
+            <td>{{ product.soluong }}</td>
+            <td>
+                <a href="{% url 'update' product.id %}" class="btn btn-success">Update</a>
+                <a href="{% url 'delete' product.id %}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
